@@ -58,10 +58,12 @@ class Exemple(QtGui.QWidget):
         btn_uninstall.resize(btn_uninstall.sizeHint())
         btn_uninstall.move(300,100)
 		#刷新列表
-        btn_re = QtGui.QPushButton(u'刷新列表',self)
+        btn_re = QtGui.QToolButton(self)
         btn_re.clicked.connect(self.devices_list)
         btn_re.resize(btn_uninstall.sizeHint())
-        btn_re.move(200,100)
+        btn_re.setIcon(QtGui.QIcon("timg.jpg"))
+        btn_re.setToolButtonStyle(QtCore.Qt.ToolButtonIconOnly)
+        btn_re.move(440,45)
         #清除数据
         btn_re = QtGui.QPushButton(u'清除数据',self)
         btn_re.clicked.connect(self.btn_clean)
@@ -77,7 +79,7 @@ class Exemple(QtGui.QWidget):
         self.combo = QtGui.QComboBox(self)
         self.combo.addItems(string_list)
         self.combo.resize(80, 20)
-        self.combo.move(370,45)
+        self.combo.move(350,45)
 		#apk地址输入框
         self.apkpath = Edit(self)
         self.apkpath.setGeometry(QtCore.QRect(20, 40, 300, 30))
