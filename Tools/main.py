@@ -58,11 +58,14 @@ class Exemple(QtGui.QWidget):
         btn_uninstall.resize(btn_uninstall.sizeHint())
         btn_uninstall.move(300,100)
 		#刷新列表
-        btn_re = QtGui.QToolButton(self)
+        #btn_re = QtGui.QToolButton(self)
+        #btn_re.clicked.connect(self.devices_list)
+        #btn_re.resize(btn_uninstall.sizeHint())
+        #btn_re.setIcon(QtGui.QIcon("timg.jpg"))
+        #btn_re.setToolButtonStyle(QtCore.Qt.ToolButtonIconOnly)
+        btn_re = QtGui.QPushButton(self)
+        btn_re.setStyleSheet("QPushButton{background-image:url(icon_cog.png);width:16px;height:16px;padding-top:0px;}")
         btn_re.clicked.connect(self.devices_list)
-        btn_re.resize(btn_uninstall.sizeHint())
-        btn_re.setIcon(QtGui.QIcon("timg.jpg"))
-        btn_re.setToolButtonStyle(QtCore.Qt.ToolButtonIconOnly)
         btn_re.move(440,45)
         #清除数据
         btn_re = QtGui.QPushButton(u'清除数据',self)
