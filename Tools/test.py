@@ -1,51 +1,22 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import sys
-from PyQt4 import QtGui, QtCore
+import time
+import os,subprocess,time,re,sys
+reload(sys)
+sys.setdefaultencoding( "utf-8" )
+def test():
+    screenshot = "adb shell /system/bin/screencap -p /sdcard/screenshot.png"
+    pic_name = str(int(time.time()))+".png"
+    screenshot_pull = "adb pull /sdcard/screenshot.png E:/screenshot/%s"%pic_name
+    subprocess.Popen(screenshot,shell=True, stdout=subprocess.PIPE).stdout
+    if  os.path.exists("E:/screenshot"):
+        pass
+    else:
+        os.mkdir("E:/screenshot")
+    Poplog = subprocess.Popen(screenshot_pull, shell=True, stdout=subprocess.PIPE).stdout
+    Poplog.readlines()
+a = "sssss"
+b = "bbbbb"
+print "%s1%s2"%(a,b)
 
-class Example(QtGui.QWidget):
-
-    def __init__(self):
-        super(Example, self).__init__()
-
-        self.initUI()
-    def initUI(self): 
-
-        self.lbl = QtGui.QLabel('Ubuntu', self)
-        self.lbl.move(50, 150)
-
-        # 创建组合框并添加5个候选项
-        combo = QtGui.QComboBox(self)
-        combo.addItem('Ubuntu')
-        combo.addItem('Mandriva')
-        combo.addItem('Fedora')
-        combo.addItem('Red Hat')
-        combo.addItem('Gentoo')
-
-        combo.move(50, 50)
-
-        # 当选择条目时，调用onActivate()方法
-        print combo.activated[str]
-        combo.activated[str].connect(self.test())
-
-        self.setGeometry(300, 300, 300, 200)
-        self.setWindowTitle('ComboBox')
-        self.show()
-
-    def onActivate(self, text):
-        # 显示文本内容，并根据文本长度调整标签控件的大小
-        print(text)
-        self.lbl.setText(text)
-        self.lbl.adjustSize()
-    def test(self,text):
-        print "dsaf"+text
-def main():
-
-    app = QtGui.QApplication(sys.argv)
-    ex = Example()
-    sys.exit(app.exec_())
-
-
-if __name__ == '__main__':
-    main()
