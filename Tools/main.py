@@ -88,10 +88,20 @@ class Exemple(QtGui.QWidget):
         self.combo.addItems(string_list)
         self.combo.resize(80, 20)
         self.combo.move(350,45)
+        #输入框
+        self.inputtext =  QtGui.QLineEdit(self)
+        self.inputtext.setGeometry(QtCore.QRect(20, 140, 300, 30))
+        self.inputtext.setText("")
+        #输入按钮
+        btn_inp = QtGui.QPushButton(u'输入',self)
+        btn_inp.clicked.connect(self.InputText)
+        btn_inp.resize(btn_uninstall.sizeHint())
+        btn_inp.move(350,145)
         #apk地址输入框
-        self.apkpath = Edit(self)
+        self.apkpath =Edit(self)
         self.apkpath.setGeometry(QtCore.QRect(20, 40, 300, 30))
         self.apkpath.setText("")
+
 #        layout = QtGui.QVBoxLayout(self)
 #        layout.addWidget(self.apkpath)
 #        self.setLayout(layout)
@@ -123,12 +133,12 @@ class Exemple(QtGui.QWidget):
     def screenshot(self):
         screenshot = "adb -s %s shell /system/bin/screencap -p /sdcard/screenshot.png"%(self.lists[str(self.combo.currentText())])
         pic_name = str(int(time.time()))+".png"
-        screenshot_pull = "adb -s %s pull /sdcard/screenshot.png E:/screenshot/%s"%((self.lists[str(self.combo.currentText())]),pic_name)
+        screenshot_pull = "adb -s %s pull /sdcard/screenshot.png D:\screenshot\%s"%((self.lists[str(self.combo.currentText())]),pic_name)
         subprocess.Popen(screenshot,shell=True, stdout=subprocess.PIPE).stdout
-        if  os.path.exists("E:/screenshot"):
+        if  os.path.exists("D:\screenshot"):
             pass
         else:
-            os.mkdir("E:/screenshot")
+            os.mkdir("D:\screenshot")
         Poplog = subprocess.Popen(screenshot_pull, shell=True, stdout=subprocess.PIPE).stdout
         Poplog.readlines()
     def devices_list(self):
@@ -141,7 +151,13 @@ class Exemple(QtGui.QWidget):
             strs = [u"无"]
         self.combo.clear()
         self.combo.addItems(strs)
-
+    def InputText(self):
+        text = str(self.inputtext.text())
+        print(text)
+        Inputtext = "adb -s %s shell input text %s"%((self.lists[str(self.combo.currentText())]),text)
+        print(Inputtext)
+        Poplog = subprocess.Popen(Inputtext, shell=True, stdout=subprocess.PIPE).stdout
+        Poplog.readlines()
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)
     ic = Exemple()
