@@ -64,7 +64,7 @@ class Exemple(QtGui.QWidget):
         #btn_re.setIcon(QtGui.QIcon("timg.jpg"))
         #btn_re.setToolButtonStyle(QtCore.Qt.ToolButtonIconOnly)
         btn_re = QtGui.QPushButton(self)
-        btn_re.setStyleSheet("QPushButton{background-image:url(icon_cog.png);width:16px;height:16px;padding-top:0px;}")
+        btn_re.setStyleSheet("QPushButton{background-image:url(1.png);width:20px;height:20px;padding-top:0px;}")
         btn_re.clicked.connect(self.devices_list)
         btn_re.move(440,45)
         #清除数据
