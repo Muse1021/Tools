@@ -45,7 +45,7 @@ class QFunction(QtGui.QWidget):
         for i in devices:
             if 'devices' not in i and len(i.split()) > 0:
                 devices_list.append(i.split()[0])
-        device_number = len(devices_list)
+        device_number = len(devices_list) 
         print(devices_list)
         if device_number == 0 :
             return False
@@ -54,21 +54,20 @@ class QFunction(QtGui.QWidget):
                 print "11111:",devices_list[i]
 
                 de = "adb -s %s shell  getprop ro.product.model" % (devices_list[i])
+                print de
                 try:
                     Poplog = subprocess.Popen(de, shell=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE)
                     g = Poplog.stdout.readlines()
                     b = Poplog.stderr.read()
-                    strs = (Poplog.stdout.readlines()[0]).strip()
-                    model_list[strs] = devices_list[i]
-                    return model_list
+                    strs = (g[0]).strip()
+                    model_list[strs] = devices_list[i]                    
                 except Exception as e:
                     if b != "":
-                        QtGui.QMessageBox.about(self,u"错误",b)
+                        QtGui.QMessageBox.about(self,"",b)
                     else:
-                        QtGui.QMessageBox.about(self,u"错误",e)
-                finally:
+                        QtGui.QMessageBox.about(self,"",str(e))
                     return False
-
+            return model_list
     def checkdevice(self):
         model_list = self.get_devices()
         if model_list == False:
