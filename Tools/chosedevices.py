@@ -22,6 +22,8 @@ def get_devices():
             print "11111:",devices_list[i]
             de = "adb -s %s shell  getprop ro.product.model" % (devices_list[i])
             Poplog = subprocess.Popen(de, shell=True, stdout=subprocess.PIPE).stdout
+            print "test:::::::",Poplog.read().split(": ")[-1]
+            print("complete")
             strs = (Poplog.readlines()[0]).strip()
             model_list[strs] = devices_list[i]
     return model_list
