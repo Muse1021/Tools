@@ -23,7 +23,7 @@ class Exemple(QFunction):
         btn.move(400,100)
         #卸载
         btn_uninstall = QtGui.QPushButton(u'卸载',self)
-        btn_uninstall.clicked.connect(self.btn_uninstall)
+        btn_uninstall.clicked.connect(self.btn_uninstal)
         #btn_uninstall.resize(btn_uninstall.sizeHint())
         btn_uninstall.move(300,100)
         #刷新列表
