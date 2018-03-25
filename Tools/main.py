@@ -23,7 +23,7 @@ class Exemple(QFunction):
         btn.move(400,100)
         #卸载
         btn_uninstall = QtGui.QPushButton(u'卸载',self)
-        btn_uninstall.clicked.connect(self.btn_uninstal)
+        btn_uninstall.clicked.connect(self.btn_uninstall)
         #btn_uninstall.resize(btn_uninstall.sizeHint())
         btn_uninstall.move(300,100)
         #刷新列表
@@ -42,7 +42,7 @@ class Exemple(QFunction):
         btn_re.move(100,100)
         #截图
         btn_re = QtGui.QPushButton(u'截图',self)
-        btn_re.clicked.connect(self.screenshot)
+        btn_re.clicked.connect(self.btn_screenshot)
         btn_re.move(200,100)
         #打开cm
         btn_re = QtGui.QPushButton(u'打开cm',self)
