@@ -22,6 +22,9 @@ class Utils(QtGui.QWidget):
             #QtGui.QMessageBox.about(self,u"提示",u"成功")
             self.d.Signal_cmd_show.connect(self.Show_MessageBox)
             self.d.Signal_cmd_show.emit([u"提示",u"成功"])
+        elif "not exist" in str(result):
+            self.d.Signal_cmd_show.connect(self.Show_MessageBox)
+            self.d.Signal_cmd_show.emit([u"错误",u"cm 未安装"])
         else:
             #QtGui.QMessageBox.about(self,u"错误",result[0])
             self.d.Signal_cmd_show.connect(self.Show_MessageBox)

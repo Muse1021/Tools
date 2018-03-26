@@ -49,7 +49,8 @@ class QFunction(Utils):
         def open():
             if self.check_connect() != False:
                 open_cmd = "adb -s %s shell am  start com.cleanmaster.mguard_cn/com.keniu.security.main.MainActivity"%(self.get_combo_currentText())
-                self.cmd(open_cmd)
+                print "open_cmd: ",open_cmd
+                self.cmd_show(open_cmd)
         self.d = Thread_func(open)
         self.d.start()
     def btn_screenshot(self):
@@ -79,11 +80,13 @@ class QFunction(Utils):
                         strs.append(i)
                 else:
                     strs = [u"无设备"]
-                self.combo.clear()
-                self.combo.addItems(strs)
+                self.d.Signal_cmd.connect(self.Set_combo)
+                self.d.Signal_cmd.emit(strs)
         self.d = Thread_func(lists)
         self.d.start()
-
+    def Set_combo(self,lists):
+        self.combo.clear()
+        self.combo.addItems(lists)
     def InputText(self):
         text = str(self.inputtext.text())
         print(text)
@@ -91,3 +94,4 @@ class QFunction(Utils):
         print(Inputtext)
         Poplog = subprocess.Popen(Inputtext, shell=True, stdout=subprocess.PIPE).stdout
         Poplog.readlines()
+

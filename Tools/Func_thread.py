@@ -6,6 +6,7 @@ class Thread_func(QtCore.QThread):
     Signal_check_apkpath = QtCore.pyqtSignal(list)
     Signal_check_connect = QtCore.pyqtSignal(list)
     Signal_get_devices = QtCore.pyqtSignal(list)
+    Signal_devices_list = QtCore.pyqtSignal(list)
     def __init__(self,f):
         super(Thread_func,self).__init__()
         self.f = f
